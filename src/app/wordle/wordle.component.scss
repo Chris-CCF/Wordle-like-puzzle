@@ -1,0 +1,63 @@
+.title-container {
+    margin-top: 15px;
+
+    .title {
+        font-weight: bold;
+        font-size: 45px;
+    }
+}
+
+.body-container {
+    margin-top: 15px;
+
+    .start-button {
+        margin-bottom: 15px;
+    }
+
+    .seed-container {
+        margin-bottom: 10px;
+    }
+
+    .guess-table {
+        overflow: auto;
+
+        .guess-container {
+            display: flex;
+            margin-bottom: 4px;
+
+            .letter-container {
+                width: 64px;
+                height: 64px;
+                border: 2px solid #ddd;
+                box-sizing: border-box;
+                margin: 0 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 32px;
+                font-weight: bold;
+                text-transform: uppercase;
+                transition: transform 180ms;
+
+                &.correct {
+                    background-color: #9edd99;
+                    border-color: #9edd99;
+                    color: white;
+                }
+
+                &.present {
+                    background-color: #e6cd60;
+                    border-color: #e6cd60;
+                    color: white;
+                }
+
+                &.absent {
+                    background-color: #878787;
+                    border-color: #878787;
+                    color: white;
+                }
+            }
+        }
+    }
+
+}

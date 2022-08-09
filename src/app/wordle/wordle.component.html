@@ -1,0 +1,26 @@
+<div class="d-flex flex-column align-items-center container">
+    <div class="title-container">
+        <div class="title">Wordle Puzzles</div>
+    </div>
+    <div class="d-flex flex-column align-items-center body-container">
+        <div class="d-flex flex-column align-items-center">
+            <div class="seed-container" *ngIf="seed != 0">
+                <span>Seed: {{seed}} Try: {{tries.length}}</span>
+            </div>
+            <button class="btn btn-primary start-button" (click)="start()">
+                <span *ngIf="!isCorrect">Start guess words automatically</span>
+                <span *ngIf="isCorrect">Finish (Click and guess another words)</span>
+            </button>
+        </div>
+        <div class="d-flex flex-column align-items-center guess-table">
+            <div class="d-flex guess-container" *ngFor="let try of tries">
+                <div class="letter-container" *ngFor="let letter of try.letters"
+                    [class.correct]="letter.result === 'correct'"
+                    [class.present]="letter.result === 'present'"
+                    [class.absent]="letter.result === 'absent'">
+                    {{letter.guess}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
