@@ -33,12 +33,12 @@ export class WordleComponent implements OnInit {
 
   }
 
-  start() {
+  start(): void {
     this.reset();
     this.guessWord();
   }
 
-  reset() {
+  reset(): void {
     //Rset values
     this.tries = [];
     this.isCorrect = false;
@@ -46,10 +46,10 @@ export class WordleComponent implements OnInit {
     this.presentAlphabetBase = [];
 
     // Returns a random integer from 1 to 2000:
-    this.seed = 1+ Math.floor(Math.random() * 2000);
+    this.seed = 1 + Math.floor(Math.random() * 2000);
   }
 
-  guessWord() {
+  guessWord(): void {
     let guess = '';
     let previousResult: Letter[] = [];
 
@@ -62,6 +62,7 @@ export class WordleComponent implements OnInit {
     if (previousResult.length > 0) {
       this.getAllPresentAlphabetResult(previousResult);
     }
+    
     for (let i = 0; i < this.guessStringLength; i++) {
       if (previousResult.length > 0 && previousResult[i]) {
         // previous guess result
@@ -78,6 +79,7 @@ export class WordleComponent implements OnInit {
         guess += letter;
       }
     }
+
     this.checkWord(guess).subscribe(
       (result) => {
         this.tries.unshift({ letters: result });
@@ -92,6 +94,7 @@ export class WordleComponent implements OnInit {
   }
 
   randomAlphabet(): string {
+    // Get a random alphabet from base
     const randomIndex = Math.floor(Math.random() * this.alphabetBase.length);
     const alphabet = this.alphabetBase[randomIndex];
     this.alphabetBase.splice(randomIndex, 1);
@@ -108,6 +111,8 @@ export class WordleComponent implements OnInit {
   }
 
   checkPresntAlphabetResult(index: number): string {
+    // Get present alphabet test in other slot
+    // if no alphabet get a random alphabet
     let alphabet: string = '';
     let tryAllSlotAlphabet: string[] = [];
     for (let i = 0; i < this.presentAlphabetBase.length; i++) {
@@ -132,11 +137,7 @@ export class WordleComponent implements OnInit {
       }
     }
 
-    // if no present letter can assign, get a random letter
-    if (alphabet === '') {
-      alphabet = this.randomAlphabet();
-    }
-    return alphabet;
+    return alphabet? alphabet : this.randomAlphabet();
   }
 
   returnAlphabetInTryExistsSlot(alphabet: string): number[] {
